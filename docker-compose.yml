@@ -1,0 +1,29 @@
+version: "2.1"
+services:
+  client:
+    build: ./
+    volumes:
+      - ./:/work
+    #ports:
+    #  - 8080:8080
+    tty: true
+  
+  server:
+    build: ./
+    volumes:
+      - ./:/work
+    ports:
+      - 8080:8080
+    networks:
+      front:
+        ipv4_address: "172.16.238.2"
+    tty: true
+
+networks:
+  front:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: "172.16.238.0/24"
+          gateway: "172.16.238.2"

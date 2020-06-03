@@ -1,0 +1,3 @@
+FROM python:3
+WORKDIR /work
+EXPOSE 8080
